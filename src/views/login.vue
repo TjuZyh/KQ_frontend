@@ -1,17 +1,21 @@
 <template>
-  <el-form class="login-container" label-position="left"
-           label-width="0px" >
-    <h3 class="login_title">系统登录</h3>
+  <!-- <div :style="{backgroundImage:'url('+backImg+')' }"> -->
+    <div>
+    <el-form class="login-container" label-position="left"
+           label-width="0px" :style="{backgroundImage:'url('+backImg+')' }" >
+    <h3 class="login_title">TJU考勤系统登录</h3>
     <el-form-item prop="account">
       <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
     <el-form-item prop="checkPass">
       <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
+    <el-checkbox class="login_remember" v-model="checked" label-position="left">记住密码</el-checkbox>
     <el-form-item style="width: 100%">
-      <el-button type="primary" @click.native.prevent="submitClick" style="width: 100%">登录</el-button>
+      <el-button type="success" @click.native.prevent="submitClick" style="width: 100%">登录</el-button>
     </el-form-item>
   </el-form>
+  </div>
 </template>
 <script>
   export default{
@@ -20,7 +24,9 @@
        loginForm:{
          username:'',
          password:''
-       }
+       },
+       backImg: require('../assets/img1.jpeg'),
+       checked: true,
       }
     },
     methods: {
@@ -79,6 +85,6 @@
 
   .login_remember {
     margin: 0px 0px 35px 0px;
-    text-align: left;
+    text-align: center;
   }
 </style>

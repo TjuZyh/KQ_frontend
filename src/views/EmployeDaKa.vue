@@ -1,6 +1,6 @@
 <template>
 <div>
-    <el-row>
+    <!-- <el-row>
         <el-col :span='10' >员工状态 {{state}} </el-col>
         <el-col :span="12" style="margin-bottom: 10px">
             <el-button type="primary" @click="changeState(0)" :disabled='isHere'>上班打卡</el-button>
@@ -8,7 +8,7 @@
             <el-button type="danger" @click="changeState(2)" :disabled='!isHere'>外出打卡</el-button>
             <el-button type="warning" @click="changeState(3)" :disabled='isHere'>返回打卡</el-button>
         </el-col>
-    </el-row>
+    </el-row> -->
     <el-table
             :data="page"
             border
