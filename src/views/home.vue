@@ -1,6 +1,6 @@
 <template>
   <el-container >
-  <el-header style="font-size: 16px;background-color:#0d5056;border-radius: 8px;height:80px">
+  <el-header style="font-size: 16px;background-color:#0d5056;border-radius: 8px;height:80px  " >
     <el-row type="flex" justify="space-between">
       <el-col :span="10" style="font-size: 24px;color: #ffffff">TJU考勤管理系统</el-col>
       <el-col :span="6"></el-col>
@@ -20,7 +20,7 @@
     </el-header>
 
   <el-container style="height: 100vh; border-radius:12px;background-color:#f0f2f5;">
-    <el-aside width="300px" style="border: 2px solid #ffd04b;background-color:#0d5056;border-radius:12px;">
+    <el-aside width="300px" style="border: 3px solid #ffffff;background-color:#0d5056;border-radius:12px;">
     <div class="personal_position">
       <img
         src="../assets/pdx.png"
@@ -33,7 +33,7 @@
     <div class="personal_state">
         <p>当前状态 - {{state}}</p>
     </div> 
-    <div>
+    <div style="margin-bottom : 10px">
       <el-button type="success" style="margin-left : 50px" @click="changeState1()" >{{checkIn}}</el-button>
       <el-button type="warning" style="margin-left : 10px" @click="changeState2()" :disabled='!isHere'>{{checkOut}}</el-button>
     </div>
@@ -44,15 +44,15 @@
       unique-opened
       background-color="#0d5056"
       text-color="#fff"
-      active-text-color="#ffd04b"
+      active-text-color="#fff"
       @open="handleOpen"
       >
         <el-submenu index="3">
-          <template slot="title">我的</template>
-          <el-menu-item index="/employer/CheckLeft">查看剩余假期</el-menu-item>
+          <template slot="title">个人中心</template>
+          <el-menu-item index="/employer/MyInfo">我的信息</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
-          <template slot="title">打卡</template>
+          <template slot="title">打卡中心</template>
           <el-menu-item index="/DaKa/EmployeDaKa">查看打卡记录</el-menu-item>
         </el-submenu>
         <el-submenu index="5">

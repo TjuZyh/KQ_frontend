@@ -1,10 +1,10 @@
 <template>
 <div>
-    <el-descriptions class="margin-top" :title="page.name"  :column="3"  border>
+    <el-descriptions class="margin-top" :title='"我的信息 : " + page.name'  :column="3"  border>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-user"></i>
-        empId
+        用户ID
       </template>
         <span>{{page.empId}}</span>
     </el-descriptions-item>
@@ -59,6 +59,60 @@
     </el-descriptions-item>
   </el-descriptions>
 
+  <el-descriptions :title='"我的剩余假期 "'  :column="3"  border style="margin-top : 20px">
+    <el-descriptions-item :column="3" >
+      <template slot="label">
+        <i class="el-icon-time"></i>
+        剩余年假
+      </template>
+        <span>{{leftTime.leftYear}}</span>
+        <el-button :disabled='!leftTime.leftYear!=0' type="success" size="medium"  @click="toApply(1)" style="margin-left : 100px">请年假</el-button>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template slot="label">
+        <i class="el-icon-time"></i>
+        剩余婚假
+      </template>
+        <span>{{leftTime.leftHunJia}}</span>
+        <el-button :disabled='!leftTime.leftHunJia!=0' type="success" size="medium"  @click="toApply(2)" style="margin-left : 100px">请婚假</el-button>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template slot="label">
+        <i class="el-icon-time"></i>
+        剩余哺乳假
+      </template>
+        <span>{{leftTime.leftBuRu}}</span>
+        <el-button :disabled='!leftTime.leftBuRu!=0' type="success" size="medium"  @click="toApply(5)" style="margin-left : 100px">请哺乳假</el-button>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template slot="label">
+        <i class="el-icon-time"></i>
+        剩余产假
+      </template>
+        <span>{{leftTime.leftChanJia}}</span>
+        <el-button :disabled='!leftTime.leftChanJia!=0' type="success" size="medium"  @click="toApply(4)" style="margin-left : 100px">请产假</el-button>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template slot="label">
+        <i class="el-icon-time"></i>
+        剩余产检假
+      </template>
+      <span>{{leftTime.leftChanJian}}</span>
+      <el-button :disabled='!leftTime.leftChanJian!=0' type="success" size="medium"  @click="toApply(3)" style="margin-left : 100px">请产检假</el-button>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template slot="label">
+        <i class="el-icon-time"></i>
+        剩余陪产假
+      </template>
+      {{leftTime.leftPeiChan}}
+      <el-button :disabled='!leftTime.leftPeiChan!=0' type="success" size="medium"  @click="toApply(6)" style="margin-left : 100px">请陪产假</el-button>
+    </el-descriptions-item>
+  </el-descriptions>
+
+
+  <el-calendar v-model="value" style="margin-top : 20px"></el-calendar>
+
 </div>
 
 </template>
@@ -70,7 +124,9 @@ export default {
             seach:{
                 account:'0',
             },
-            page:{}
+            page:{},
+            value: new Date(),
+            leftTime:{},
         }
     },
     created(){
@@ -84,6 +140,15 @@ export default {
               console.log(res.data.data);
                 this.page = res.data.data;
             });
+
+            var empId = window.sessionStorage.getItem('empId');
+            this.$http.get('/getLeftTimeById/'+empId).then(res => {
+                console.log(res.data);
+                this.leftTime = res.data.data;
+            });
+
+
+
         },
         formatDate(startTime){
             var date = new Date(startTime);
@@ -114,6 +179,10 @@ export default {
                 return '男'
             }
         },
+        toApply(num){
+            this.$router.push({path: '/apply/addApply', query: {type: num}});
+            // this.$router.push('/apply/addApply');
+        }
         
     },
 }

@@ -41,7 +41,7 @@
           _this.$http.get('/login/'+_this.loginForm.username+'/'+_this.loginForm.password).then(function (response) {
             console.log(response);
             if (response.data.code == 200) {
-              _this.$alert('登录成功', '提示', {
+              _this.$alert('登录成功, 您好: ' + response.data.data.name, '提示', {
                 confirmButtonText: '确定',
               });
               console.log(response.data.data.empId);
@@ -49,7 +49,7 @@
               window.sessionStorage.setItem('account',response.data.data.account);
               window.sessionStorage.setItem('name',response.data.data.name);
               window.sessionStorage.setItem('role',response.data.data.role); 
-              _this.$router.replace({path: '/DaKa/EmployeDaKa'});   
+              _this.$router.replace({path: '/employer/MyInfo'});   
             }else if(response.data.code == 305){
               _this.$alert(response.data.message, '提示', {
                 confirmButtonText: '确定',

@@ -9,9 +9,10 @@
             <el-button type="warning" @click="changeState(3)" :disabled='isHere'>返回打卡</el-button>
         </el-col>
     </el-row> -->
+    <el-page-header @back="goBack" content="我的打卡记录" style="margin-bottom : 10px"></el-page-header>
     <el-table
-            :data="page"
-            border
+            :data="page.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+            stripe
             style="width: 100%"
             :default-sort = "{prop: 'time', order: 'descending'}"
             >
@@ -31,6 +32,7 @@
             sortable
             :formatter="formatDate"
             >
+            
         </el-table-column>
         <el-table-column
             prop="type"
@@ -39,6 +41,17 @@
             >
         </el-table-column>
     </el-table>
+    <div style="margin-top:.2rem;margin-left: .2rem;">
+            <el-pagination 
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-sizes="[5,7,10]"
+                :page-size="pagesize"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="page.length">
+            </el-pagination>
+        </div>
 </div>
     
    
@@ -53,7 +66,10 @@ export default {
           return{
             page:[],
             state:' ',
-            isHere:false
+            isHere:false,
+            currentPage: 1,
+		    currentIndex: '',
+		    pagesize: 7,
           }
       },
       created(){
@@ -110,7 +126,7 @@ export default {
             minute = minute < 10 ? "0" + minute : minute;
             var second = date.getSeconds();
             second = second < 10 ? "0" + second : second;
-            return year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
+            return  year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
         },
          changeState(num){
             var empId = window.sessionStorage.getItem('empId');
@@ -138,6 +154,16 @@ export default {
                 }
             });
         },
+        handleSizeChange(val) {
+        this.pagesize = val;
+        console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+        this.currentPage= val
+        },
+        goBack() {
+        console.log('go back');
+        }
 
       }
  }
