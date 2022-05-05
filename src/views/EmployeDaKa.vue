@@ -9,7 +9,13 @@
             <el-button type="warning" @click="changeState(3)" :disabled='isHere'>返回打卡</el-button>
         </el-col>
     </el-row> -->
-    <el-page-header @back="goBack" content="我的打卡记录" style="margin-bottom : 10px"></el-page-header>
+    <el-breadcrumb separator="/" style="margin-bottom : 20px">
+        <el-breadcrumb-item :to="{ path: '#' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item><a href="#">打卡中心</a></el-breadcrumb-item>
+        <el-breadcrumb-item>打卡记录</el-breadcrumb-item>
+    </el-breadcrumb>
+    <img src="../assets/img1.jpeg" alt="个人的头像" style="height:500px; width:100% ">
+    
     <el-table
             :data="page.slice((currentPage-1)*pagesize,currentPage*pagesize)"
             stripe

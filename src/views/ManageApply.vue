@@ -1,5 +1,11 @@
 <template>
-    <!-- 部门经理获得三天以下的申请列表 -->
+    <div>
+        <el-breadcrumb separator="/" style="margin-bottom : 20px">
+        <el-breadcrumb-item :to="{ path: '#' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item><a href="#">审批假期</a></el-breadcrumb-item>
+        <el-breadcrumb-item>部门经理审核</el-breadcrumb-item>
+    </el-breadcrumb>
+    
     <el-table
         stripe
         :data="page"
@@ -7,15 +13,14 @@
         <el-table-column
             prop="applyId"
             label="申请序号">
-            <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <p>姓名: {{ scope.row.name }}</p>
-          <p>工号: {{ scope.row.account }}</p>
-          <div slot="reference" class="name-wrapper">
-            <el-tag size="medium">{{ scope.row.applyId }}</el-tag>
-          </div>
-        </el-popover>
-      </template>
+        </el-table-column>
+        <el-table-column
+            prop="name"
+            label="姓名">
+        </el-table-column>
+        <el-table-column
+            prop="account"
+            label="工号">
         </el-table-column>
         <el-table-column
             label="请假日期"
@@ -48,6 +53,7 @@
       </template>
     </el-table-column>
     </el-table>
+    </div>
 </template>
 
 <script>
