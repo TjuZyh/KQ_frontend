@@ -4,7 +4,7 @@
     <el-row type="flex" justify="space-between">
       <el-col :span="10" style="font-size: 24px;color: #ffffff">TJU考勤管理系统</el-col>
       <el-col :span="6"></el-col>
-      <el-col :span="2">
+      <el-col :span="3">
         <el-dropdown @command="handleCommand">
           <el-button style="border-radius: ; " >
             角色 - {{formatRole(role)}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -48,34 +48,30 @@
       @open="handleOpen"
       >
         <el-submenu index="3">
-          <template slot="title">个人中心</template>
-          <el-menu-item index="/employer/MyInfo">我的信息</el-menu-item>
-        </el-submenu>
-        <el-submenu index="2">
-          <template slot="title">打卡中心</template>
-          <el-menu-item index="/DaKa/EmployeDaKa">查看打卡记录</el-menu-item>
+          
+          <template slot="title"><i class="el-icon-user-solid"></i>个人中心</template>
+          <el-menu-item index="/employer/MyInfo"><i class="el-icon-s-management"></i>我的信息</el-menu-item>
+          <el-menu-item index="/DaKa/EmployeDaKa"><i class="el-icon-s-order"></i>查看打卡记录</el-menu-item>
+          <el-menu-item index="/apply/applyList"><i class="el-icon-s-data"></i>请假记录</el-menu-item>
         </el-submenu>
         <el-submenu index="5">
-          <template slot="title">申请假期</template>
-          <el-menu-item index="/apply/addApply">添加申请</el-menu-item>
-          <el-menu-item index="/apply/applyList">请假记录</el-menu-item>
+          <template slot="title"><i class="el-icon-s-promotion"></i>申请假期</template>
+          <el-menu-item index="/apply/addApply"><i class="el-icon-s-platform"></i>添加申请</el-menu-item>
         </el-submenu>
         <el-submenu index="1">
-          <template slot="title">审批假期</template>
-          <el-menu-item index="/apply/ManageApply" :disabled="ismanager">部门经理审核申请</el-menu-item>
-          <el-menu-item index="/apply/ManageApplyX" :disabled="ismanager">总经理审核申请</el-menu-item>
+          <template slot="title"><i class="el-icon-s-check"></i>审批假期</template>
+          <el-menu-item index="/apply/ManageApply" :disabled="ismanager"><i class="el-icon-search"></i>部门经理审核申请</el-menu-item>
+          <el-menu-item index="/apply/ManageApplyX" :disabled="ismanager"><i class="el-icon-search"></i>总经理审核申请</el-menu-item>
         </el-submenu>
         <el-submenu index="4">
-          <template slot="title">人事管理</template>
-          <el-menu-item index="/employer/AddEmployer" :disabled="isrenshi">添加员工</el-menu-item>
-          <el-menu-item index="/employer/AllEmployeState" :disabled="isrenshi">员工状态</el-menu-item>
-          <el-menu-item index="/employer/EmployerInfo" :disabled="isrenshi">员工详情</el-menu-item>
-          <el-menu-item index="/employer/AllEmployer" :disabled="isrenshi">查询所有人员</el-menu-item>
+          <template slot="title"><i class="el-icon-collection"></i>人事管理</template>
+          <el-menu-item index="/employer/AddEmployer" :disabled="isrenshi"><i class="el-icon-edit-outline"></i>添加员工</el-menu-item>
+          <el-menu-item index="/employer/AllEmployer" :disabled="isrenshi"><i class="el-icon-document"></i>全部人员信息</el-menu-item>
         </el-submenu>
         <el-submenu index="6">
-          <template slot="title">财务管理</template>
-          <el-menu-item index="/DaKa/AllDaKa" :disabled="iscaiwu">所有打卡记录</el-menu-item>
-          <el-menu-item index="/apply/AllApplyList" :disabled="iscaiwu">所有请假申请</el-menu-item>
+          <template slot="title"><i class="el-icon-data-line"></i>财务管理</template>
+          <el-menu-item index="/DaKa/AllDaKa" :disabled="iscaiwu"><i class="el-icon-notebook-1"></i>所有打卡记录</el-menu-item>
+          <el-menu-item index="/apply/AllApplyList" :disabled="iscaiwu"><i class="el-icon-tickets"></i>所有请假申请</el-menu-item>
         </el-submenu>
     </el-menu>
   </el-aside>
@@ -113,7 +109,7 @@ body,html{
         isrenshi : false,
         iscaiwu: false,
         isCollapse: false,
-        activeIndex: '3',
+        activeIndex: '2',
         role : '',
         state : '在班',
         checkIn : '下班打卡',

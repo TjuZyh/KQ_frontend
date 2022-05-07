@@ -60,13 +60,13 @@
   </el-descriptions>
 
   <el-descriptions :title='"我的剩余假期 "'  :column="3"  border style="margin-top : 20px">
-    <el-descriptions-item :column="3" >
-      <template slot="label">
+    <el-descriptions-item :column="1" >
+      <template slot="label" :column="2">
         <i class="el-icon-time"></i>
         剩余年假
       </template>
         <span>{{leftTime.leftYear}}</span>
-        <el-button :disabled='!leftTime.leftYear!=0' type="success" size="medium"  @click="toApply(1)" style="margin-left : 100px">请年假</el-button>
+        
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
@@ -74,40 +74,35 @@
         剩余婚假
       </template>
         <span>{{leftTime.leftHunJia}}</span>
-        <el-button :disabled='!leftTime.leftHunJia!=0' type="success" size="medium"  @click="toApply(2)" style="margin-left : 100px">请婚假</el-button>
-    </el-descriptions-item>
+        </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-time"></i>
         剩余哺乳假
       </template>
         <span>{{leftTime.leftBuRu}}</span>
-        <el-button :disabled='!leftTime.leftBuRu!=0' type="success" size="medium"  @click="toApply(5)" style="margin-left : 100px">请哺乳假</el-button>
-    </el-descriptions-item>
+        </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-time"></i>
         剩余产假
       </template>
         <span>{{leftTime.leftChanJia}}</span>
-        <el-button :disabled='!leftTime.leftChanJia!=0' type="success" size="medium"  @click="toApply(4)" style="margin-left : 100px">请产假</el-button>
-    </el-descriptions-item>
+        </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-time"></i>
         剩余产检假
       </template>
       <span>{{leftTime.leftChanJian}}</span>
-      <el-button :disabled='!leftTime.leftChanJian!=0' type="success" size="medium"  @click="toApply(3)" style="margin-left : 100px">请产检假</el-button>
-    </el-descriptions-item>
+      </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-time"></i>
         剩余陪产假
       </template>
       {{leftTime.leftPeiChan}}
-      <el-button :disabled='!leftTime.leftPeiChan!=0' type="success" size="medium"  @click="toApply(6)" style="margin-left : 100px">请陪产假</el-button>
-    </el-descriptions-item>
+      </el-descriptions-item>
   </el-descriptions>
 
 

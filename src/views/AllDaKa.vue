@@ -1,5 +1,10 @@
 <template>
 <div>
+    <el-breadcrumb separator="/" style="margin-bottom : 20px">
+        <el-breadcrumb-item :to="{ path: '#' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item><a href="#">财务管理</a></el-breadcrumb-item>
+        <el-breadcrumb-item>全部打卡记录</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
         <el-form :inline="true" :model="seach" class="demo-form-inline">
         <el-form-item label="员工工号">
@@ -15,13 +20,13 @@
             </el-select>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="search">查询</el-button>
+            <el-button type="success" @click="search">查询</el-button>
         </el-form-item>
         </el-form>
     </el-row>
 
     <el-table
-            :data="page"
+            :data="page.slice((currentPage-1)*pagesize,currentPage*pagesize)"
             border
             style="width: 100%"
             :default-sort = "{prop: 'time', order: 'descending'}"
@@ -50,6 +55,17 @@
             >
         </el-table-column>
     </el-table>
+    <div style="margin-top:.2rem;margin-left: .2rem;">
+            <el-pagination 
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-sizes="[5,7,10]"
+                :page-size="pagesize"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="page.length">
+            </el-pagination>
+        </div>
 </div>
 
 </template>
@@ -62,7 +78,10 @@ export default {
             seach:{
                 account:'',
                 state:''
-            }
+            },
+            currentPage: 1,
+		    currentIndex: '',
+		    pagesize: 9,
         }
     },
     created() {
@@ -101,7 +120,14 @@ export default {
                 console.log(res.data);
                 this.page = res.data.data;
             });
-        }
+        },
+        handleSizeChange(val) {
+        this.pagesize = val;
+        console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+        this.currentPage= val
+        },
     }
 }
 </script>

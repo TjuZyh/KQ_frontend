@@ -1,15 +1,20 @@
 <template>
 <div>
+    <el-breadcrumb separator="/" style="margin-bottom : 20px">
+        <el-breadcrumb-item :to="{ path: '#' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item><a href="#">人事管理</a></el-breadcrumb-item>
+        <el-breadcrumb-item>全部人员信息</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
         <el-form :inline="true" :model="seach" class="demo-form-inline">
         <el-form-item label="员工类型">
             <el-select v-model="seach.state" placeholder=" -- ">
                 <el-option label="员工" value="/queryAllEmployeeInfo"></el-option>
-                <el-option label="经理" value="/queryAllEmployerInfo"></el-option>
+                <el-option label="管理人员" value="/queryAllEmployerInfo"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="loaddate">查询</el-button>
+            <el-button type="success" @click="loaddate">查询</el-button>
         </el-form-item>
         </el-form>
     </el-row>

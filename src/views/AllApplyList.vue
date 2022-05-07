@@ -1,59 +1,26 @@
 <template>
 <div>
+    <el-breadcrumb separator="/" style="margin-bottom : 20px">
+        <el-breadcrumb-item :to="{ path: '#' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item><a href="#">财务管理</a></el-breadcrumb-item>
+        <el-breadcrumb-item>全部请假申请</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
         <el-form :inline="true" :model="seach" class="demo-form-inline">
         <el-form-item label="员工ID">
             <el-input v-model="seach.account" placeholder="请输入员工ID"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="loaddata">查询</el-button>
+            <el-button type="success" @click="loaddata">查询</el-button>
         </el-form-item>
         </el-form>
     </el-row>
 
-    <h3>正在审核:</h3>
- <el-table
-            :data="page1"
-            border
-            style="width: 100%"
-            :row-class-name="tableRowClassName">
-        <el-table-column
-            prop="applyId"
-            label="申请序号">
-        </el-table-column>
-        <el-table-column
-            prop="name"
-            label="用户名"
-        >
-        </el-table-column>
-        <el-table-column
-            prop="account"
-            label="工号">
-        </el-table-column>
-        
-        <el-table-column
-            prop="duringTime"
-            label="请假天数">
-        </el-table-column>
-        <el-table-column
-            prop="state"
-            label="请假状态"
-            :formatter="formatState"
-            >
-        </el-table-column>
-        <el-table-column
-            prop="type"
-            label="请假类型"
-            :formatter="formatType"
-            >
-        </el-table-column>
-    </el-table>
-    <h3>已处理:</h3>
    <el-table
             :data="page"
-            border
+            stripe=""
             style="width: 100%"
-            :row-class-name="tableRowClassName">
+            >
         <el-table-column
             prop="applyRecordId"
             label="申请序号">

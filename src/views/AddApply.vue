@@ -112,6 +112,7 @@
               message: '添加成功',
               type: 'success'
             });
+            this.loaddata();
             this.$router.push('/apply/addApply');
           } else if(res.data.code == 302) {
             this.$message({
@@ -149,13 +150,31 @@
                 return '通过';
             }
         },
+      formatType(row){
+            if (row.type == 0) {
+                return '事假';
+            } else if (row.type == 1) {
+                return '年假';
+            } else if (row.type == 2) {
+                return '婚假';
+            } else if (row.type == 3) {
+                return '产检';
+            } else if (row.type == 4) {
+                return '产假';
+            } else if (row.type == 5) {
+                return '哺乳';
+            } else if (row.type == 6) {
+                return '陪产';
+            } else if (row.type == 7) {
+                return '外出';
+            } 
+        },
     }
   }
 </script>
 
 <style scoped>
 .apply_form_div{
-  background: rgb(228, 227, 227);
   border-radius: 12px;
   margin-bottom: 20px;
 }
